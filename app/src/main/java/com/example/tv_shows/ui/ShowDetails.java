@@ -126,9 +126,8 @@ public class ShowDetails extends AppCompatActivity {
     }
 
     private void initiateView() {
-        tvShowname = findViewById(R.id.name);
+        tvShowname = findViewById(R.id.date);
         tvNumberEpisodes = findViewById(R.id.episodes);
-        tvDescription = findViewById(R.id.description);
         listview = findViewById(R.id.listview);
     }
 
@@ -136,7 +135,6 @@ public class ShowDetails extends AppCompatActivity {
         if (fromagerie != null) {
             createEpisodeList();
             tvShowname.setText(fromagerie.getName());
-            tvDescription.setText(fromagerie.getDescription());
         }
     }
 
@@ -149,7 +147,7 @@ public class ShowDetails extends AppCompatActivity {
         vmEpisodeList.getPriseEnCharges().observe(this, episodeEntities -> {
             if (episodeEntities != null) {
                 priseEnChargeList = episodeEntities;
-                priseEnChargeList.sort(Comparator.comparingInt(PriseEnCharge::getNumber));
+                //priseEnChargeList.sort(Comparator.comparingInt(PriseEnCharge::getNumber));
                 adapter.clear();
                 adapter.addAll(priseEnChargeList);
                 setListViewHeightBasedOnChildren(listview); // To stretch the listView dynamically, so it's not only showing the first object in the listview

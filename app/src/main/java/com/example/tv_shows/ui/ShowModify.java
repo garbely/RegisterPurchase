@@ -64,7 +64,6 @@ public class ShowModify extends AppCompatActivity {
                     fromagerie = showEntity;
                     editText1.setText(fromagerie.getName() + " (Not editable)"); // Inform user that Name is not editable -> Primary Key
                     editText1.setEnabled(false);
-                    editText2.setText(String.valueOf(fromagerie.getDescription()));
                 }
             });
         }
@@ -78,8 +77,7 @@ public class ShowModify extends AppCompatActivity {
     }
 
     private void initiateView() {
-        editText1 = (EditText) findViewById(R.id.name);
-        editText2 = (EditText) findViewById(R.id.description);
+        editText1 = (EditText) findViewById(R.id.date);
         button = (Button) findViewById(R.id.save);
 
         editText1.addTextChangedListener(loginTextWatcher);
@@ -94,7 +92,6 @@ public class ShowModify extends AppCompatActivity {
                 String substringShowName = name.substring(0, name.length() - 15); // Delete part of the String -> (Not editable)
                 fromagerie.setName(substringShowName);
                 System.out.println(fromagerie.getName());
-                fromagerie.setDescription(description);
                 viewModel.updateFromagerie(fromagerie, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {

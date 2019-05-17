@@ -83,9 +83,9 @@ public class EpisodeModify extends AppCompatActivity {
     }
 
     private void initiateView() {
-        editText1 = (EditText) findViewById(R.id.name);
-        editText2 = (EditText) findViewById(R.id.number);
-        editText3 = (EditText) findViewById(R.id.length);
+        editText1 = (EditText) findViewById(R.id.date);
+        editText2 = (EditText) findViewById(R.id.date_peser);
+        editText3 = (EditText) findViewById(R.id.nombre);
         button = (Button) findViewById(R.id.save);
 
         editText1.addTextChangedListener(loginTextWatcher);

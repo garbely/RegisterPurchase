@@ -101,7 +101,7 @@ public class EpisodeDetails extends AppCompatActivity {
                 intent = new Intent(EpisodeDetails.this, ShowDetails.class);
                 break;
         }
-        intent.putExtra("showName", priseEnCharge.getShowName()); // give ShowName to the ShowDetails activity
+        intent.putExtra("showName", priseEnCharge.getFromagerieName()); // give ShowName to the ShowDetails activity
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION |
                         Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -112,16 +112,16 @@ public class EpisodeDetails extends AppCompatActivity {
     }
 
     private void initiateView() {
-        tvEpisodeName = findViewById(R.id.name);
-        tvEpisodeNumber = findViewById(R.id.number);
-        tvLength = findViewById(R.id.length);
+        tvEpisodeName = findViewById(R.id.date);
+        tvEpisodeNumber = findViewById(R.id.date_peser);
+        tvLength = findViewById(R.id.nombre);
     }
 
     private void updateContent() {
         if (priseEnCharge != null) {
-            tvEpisodeName.setText(priseEnCharge.getName());
+            tvEpisodeName.setText(priseEnCharge.getDate());
             tvEpisodeNumber.setText("PriseEnCharge Number: #" + priseEnCharge.getId());
-            tvLength.setText("Length: " + priseEnCharge.getLength() + " min");
+            tvLength.setText("Length: " + priseEnCharge.getPoids() + " min");
         }
     }
 }

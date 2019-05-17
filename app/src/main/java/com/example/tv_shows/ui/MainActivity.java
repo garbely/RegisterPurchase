@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("Shows");
+        setTitle("Fromageries");
 
         // Create List by ViewModel
         listview = findViewById(R.id.listview);

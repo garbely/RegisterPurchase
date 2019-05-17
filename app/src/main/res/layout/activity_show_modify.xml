@@ -9,19 +9,11 @@
     tools:context=".ui.EpisodeModify">
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Show Name" />
-
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:autoSizeTextType="uniform"
-        android:layout_marginTop="20dp"
-        android:hint="Show Description"/>
+        android:hint="fromagerie Name" />
 
     <Button
         android:id="@+id/save"
