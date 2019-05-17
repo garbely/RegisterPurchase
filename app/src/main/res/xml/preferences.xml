@@ -5,5 +5,5 @@
         android:enabled="true"
         android:icon="@drawable/ic_info"
         android:title="About"
-        android:summary="This application was build by Patrick Garbely and Xavier Kalbermatten in March 2019."/>
+        android:summary="This application was build by Patrick Garbely, Damian Wasmer, Jannis Kalbermatten and Xavier Kalbermatten in March 2019."/>
 </PreferenceScreen>

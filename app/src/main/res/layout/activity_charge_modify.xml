@@ -14,12 +14,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:orientation="vertical">
             <EditText
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:hint="Date" />
 
             <EditText
@@ -27,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:hint="Date peser" />
 
             <EditText
@@ -34,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:inputType="number"
                 android:hint="nombre" />
 
@@ -42,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:hint="Sorte" />
 
             <EditText
@@ -50,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:inputType="number"
+                android:textSize="24sp"
                 android:hint="poids" />
 
             <EditText
@@ -57,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:hint="Qualite" />
 
             <EditText
@@ -64,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:hint="Prix Kilo" />
 
             <EditText
@@ -72,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:inputType="number"
+                android:textSize="24sp"
                 android:hint="Reduction" />
 
             <EditText
@@ -79,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textSize="24sp"
                 android:hint="Prix finale" />
 
 
@@ -87,14 +98,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:autoSizeTextType="uniform"
+                android:textSize="24sp"
                 android:layout_marginTop="20dp"
-                android:hint="Show Description"/>
+                android:hint="Remarque"/>
 
 
             <Button
                 android:id="@+id/save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="24sp"
                 android:text="Save" />
         </LinearLayout>
     </ScrollView>
