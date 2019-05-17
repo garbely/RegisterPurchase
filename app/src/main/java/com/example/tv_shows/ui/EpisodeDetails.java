@@ -11,17 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tv_shows.R;
-import com.example.tv_shows.db.entity.Episode;
+import com.example.tv_shows.db.entity.PriseEnCharge;
 import com.example.tv_shows.util.OnAsyncEventListener;
-import com.example.tv_shows.viewmodel.episode.EpisodeViewModel;
+import com.example.tv_shows.viewmodel.priseEnCharge.PriseEnChargeViewModel;
 
 public class EpisodeDetails extends AppCompatActivity {
 
     private static final String TAG = "EpisodeDetails";
 
-    // Episode Entity & ViewModel
-    private Episode episode;
-    private EpisodeViewModel viewModel;
+    // PriseEnCharge Entity & ViewModel
+    private PriseEnCharge priseEnCharge;
+    private PriseEnChargeViewModel viewModel;
 
     // 3 TextViews for all attributes
     private TextView tvEpisodeName;
@@ -33,21 +33,21 @@ public class EpisodeDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_episode_details);
-        setTitle("Episode Details");
+        setTitle("PriseEnCharge Details");
 
-        // Get the showname and the ID of the episode chosen by the user
+        // Get the showname and the ID of the priseEnCharge chosen by the user
         String idEpisode = getIntent().getStringExtra("idEpisode");
         String showName = getIntent().getStringExtra("showName");
 
         // Associate TextViews with xml declarations
         initiateView();
 
-        // Get Episode Details & Create ViewModel
-        EpisodeViewModel.Factory factory = new EpisodeViewModel.Factory(getApplication(), idEpisode, showName);
-        viewModel = ViewModelProviders.of(this, factory).get(EpisodeViewModel.class);
-        viewModel.getEpisode().observe(this, episodeEntity -> {
+        // Get PriseEnCharge Details & Create ViewModel
+        PriseEnChargeViewModel.Factory factory = new PriseEnChargeViewModel.Factory(getApplication(), idEpisode, showName);
+        viewModel = ViewModelProviders.of(this, factory).get(PriseEnChargeViewModel.class);
+        viewModel.getPriseEnCharge().observe(this, episodeEntity -> {
             if (episodeEntity != null) {
-                episode = episodeEntity;
+                priseEnCharge = episodeEntity;
                 updateContent();
             }
         });
@@ -80,28 +80,28 @@ public class EpisodeDetails extends AppCompatActivity {
             // Update Function
             case R.id.edit:
                 intent = new Intent(EpisodeDetails.this, EpisodeModify.class);
-                intent.putExtra("idEpisode", episode.getId()); // give episode ID to the EpisodeModify activity
+                intent.putExtra("idEpisode", priseEnCharge.getId()); // give priseEnCharge ID to the EpisodeModify activity
                 break;
 
             // Delete Function
             case R.id.delete:
-                viewModel.deleteEpisode(episode, new OnAsyncEventListener() {
+                viewModel.deletePriseEnCharge(priseEnCharge, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "Episode Details: success");
+                        Log.d(TAG, "PriseEnCharge Details: success");
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-                        Log.d(TAG, "Episode Details: failure", e);
-                        Toast toast = Toast.makeText(getApplicationContext(),"Episode couldn't be deleted. Try Again.", Toast.LENGTH_LONG);
+                        Log.d(TAG, "PriseEnCharge Details: failure", e);
+                        Toast toast = Toast.makeText(getApplicationContext(),"PriseEnCharge couldn't be deleted. Try Again.", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
                 intent = new Intent(EpisodeDetails.this, ShowDetails.class);
                 break;
         }
-        intent.putExtra("showName", episode.getShowName()); // give ShowName to the ShowDetails activity
+        intent.putExtra("showName", priseEnCharge.getShowName()); // give ShowName to the ShowDetails activity
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION |
                         Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -118,10 +118,10 @@ public class EpisodeDetails extends AppCompatActivity {
     }
 
     private void updateContent() {
-        if (episode != null) {
-            tvEpisodeName.setText(episode.getName());
-            tvEpisodeNumber.setText("Episode Number: #" + episode.getId());
-            tvLength.setText("Length: " + episode.getLength() + " min");
+        if (priseEnCharge != null) {
+            tvEpisodeName.setText(priseEnCharge.getName());
+            tvEpisodeNumber.setText("PriseEnCharge Number: #" + priseEnCharge.getId());
+            tvLength.setText("Length: " + priseEnCharge.getLength() + " min");
         }
     }
 }

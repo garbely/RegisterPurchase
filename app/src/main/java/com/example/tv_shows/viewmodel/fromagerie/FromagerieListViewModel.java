@@ -1,4 +1,4 @@
-package com.example.tv_shows.viewmodel.show;
+package com.example.tv_shows.viewmodel.fromagerie;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -9,33 +9,33 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.example.tv_shows.BaseApp;
-import com.example.tv_shows.db.entity.Show;
-import com.example.tv_shows.db.repository.ShowRepository;
+import com.example.tv_shows.db.entity.Fromagerie;
+import com.example.tv_shows.db.repository.FromagerieRepository;
 import com.example.tv_shows.util.OnAsyncEventListener;
 
 import java.util.List;
 
-public class ShowListViewModel extends AndroidViewModel {
+public class FromagerieListViewModel extends AndroidViewModel {
 
-    private ShowRepository repository;
+    private FromagerieRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<Show>> observableShows;
+    private final MediatorLiveData<List<Fromagerie>> observableFromageries;
 
-    public ShowListViewModel(@NonNull Application application,
-                             ShowRepository repository) {
+    public FromagerieListViewModel(@NonNull Application application,
+                                   FromagerieRepository repository) {
         super(application);
 
         this.repository = repository;
 
-        observableShows = new MediatorLiveData<>();
+        observableFromageries = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableShows.setValue(null);
+        observableFromageries.setValue(null);
 
-        LiveData<List<Show>> shows = repository.getAllShows();
+        LiveData<List<Fromagerie>> fromageries = repository.getAllFromageries();
 
         // observe the changes of the entities from the database and forward them
-        observableShows.addSource(shows, observableShows::setValue);
+        observableFromageries.addSource(fromageries, observableFromageries::setValue);
     }
 
     /**
@@ -45,29 +45,29 @@ public class ShowListViewModel extends AndroidViewModel {
 
         @NonNull
         private final Application application;
-        private final ShowRepository repository;
+        private final FromagerieRepository repository;
 
         public Factory(@NonNull Application application) {
             this.application = application;
-            repository = ShowRepository.getInstance();
+            repository = FromagerieRepository.getInstance();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ShowListViewModel(application, repository);
+            return (T) new FromagerieListViewModel(application, repository);
         }
     }
 
     /**
      * Expose the LiveData ClientEntities query so the UI can observe it.
      */
-    public LiveData<List<Show>> getShows() {
-        return observableShows;
+    public LiveData<List<Fromagerie>> getFromageries() {
+        return observableFromageries;
     }
 
-    public void deleteShow(Show show, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getShowRepository()
-                .delete(show, callback);
+    public void deleteFromagerie(Fromagerie fromagerie, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getFromagerieRepository()
+                .delete(fromagerie, callback);
     }
 }

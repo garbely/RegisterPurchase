@@ -4,24 +4,23 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.tv_shows.db.entity.PriseEnCharge;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import com.example.tv_shows.db.entity.Episode;
+public class PriseEnChargeLiveData extends LiveData<PriseEnCharge> {
 
-public class EpisodeLiveData extends LiveData<Episode> {
-
-    private static final String TAG = "EpisodeLiveData";
+    private static final String TAG = "PriseEnChargeLiveData";
 
     private final DatabaseReference reference;
-    private final String showName;
-    private final EpisodeLiveData.MyValueEventListener listener = new EpisodeLiveData.MyValueEventListener();
+    private final String fromagerieName;
+    private final PriseEnChargeLiveData.MyValueEventListener listener = new PriseEnChargeLiveData.MyValueEventListener();
 
-    public EpisodeLiveData(DatabaseReference reference) {
+    public PriseEnChargeLiveData(DatabaseReference reference) {
         this.reference = reference;
-        showName = reference.getParent().getParent().getKey();
+        fromagerieName = reference.getParent().getParent().getKey();
     }
 
     @Override
@@ -38,10 +37,10 @@ public class EpisodeLiveData extends LiveData<Episode> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            Episode entity = dataSnapshot.getValue(Episode.class);
+            PriseEnCharge entity = dataSnapshot.getValue(PriseEnCharge.class);
             try {
                 entity.setId(dataSnapshot.getKey());
-                entity.setShowName(showName);
+                entity.setFromagerieName(fromagerieName);
                 setValue(entity);
             }
             catch (NullPointerException e){}

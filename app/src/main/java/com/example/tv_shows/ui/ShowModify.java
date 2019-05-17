@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tv_shows.R;
-import com.example.tv_shows.db.entity.Show;
+import com.example.tv_shows.db.entity.Fromagerie;
 import com.example.tv_shows.util.OnAsyncEventListener;
-import com.example.tv_shows.viewmodel.show.ShowViewModel;
+import com.example.tv_shows.viewmodel.fromagerie.FromagerieViewModel;
 
 public class ShowModify extends AppCompatActivity {
 
@@ -30,9 +30,9 @@ public class ShowModify extends AppCompatActivity {
     // Button to save changed attribute/s
     private Button button;
 
-    // Show Entity & ViewModel
-    private ShowViewModel viewModel;
-    private Show show;
+    // Fromagerie Entity & ViewModel
+    private FromagerieViewModel viewModel;
+    private Fromagerie fromagerie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +46,25 @@ public class ShowModify extends AppCompatActivity {
 
         // Define if EditMode or not (Add mode)
         if (showName.equals("")) {
-            setTitle("Add Show");
+            setTitle("Add Fromagerie");
             isEditMode = false;
         } else {
-            setTitle("Edit Show");
+            setTitle("Edit Fromagerie");
             button.setText("Save Changes");
             isEditMode = true;
         }
 
-        // Get Show Details & Create ViewModel
-        ShowViewModel.Factory factory = new ShowViewModel.Factory(getApplication(), showName);
-        viewModel = ViewModelProviders.of(this, factory).get(ShowViewModel.class);
+        // Get Fromagerie Details & Create ViewModel
+        FromagerieViewModel.Factory factory = new FromagerieViewModel.Factory(getApplication(), showName);
+        viewModel = ViewModelProviders.of(this, factory).get(FromagerieViewModel.class);
 
         if (isEditMode) {
-            viewModel.getShow().observe(this, showEntity -> {
+            viewModel.getFromagerie().observe(this, showEntity -> {
                 if (showEntity != null) {
-                    show = showEntity;
-                    editText1.setText(show.getName() + " (Not editable)"); // Inform user that Name is not editable -> Primary Key
+                    fromagerie = showEntity;
+                    editText1.setText(fromagerie.getName() + " (Not editable)"); // Inform user that Name is not editable -> Primary Key
                     editText1.setEnabled(false);
-                    editText2.setText(String.valueOf(show.getDescription()));
+                    editText2.setText(String.valueOf(fromagerie.getDescription()));
                 }
             });
         }
@@ -92,36 +92,36 @@ public class ShowModify extends AppCompatActivity {
 
         if (isEditMode) {
                 String substringShowName = name.substring(0, name.length() - 15); // Delete part of the String -> (Not editable)
-                show.setName(substringShowName);
-                System.out.println(show.getName());
-                show.setDescription(description);
-                viewModel.updateShow(show, new OnAsyncEventListener() {
+                fromagerie.setName(substringShowName);
+                System.out.println(fromagerie.getName());
+                fromagerie.setDescription(description);
+                viewModel.updateFromagerie(fromagerie, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "update Show: success");
+                        Log.d(TAG, "update Fromagerie: success");
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-                        Log.d(TAG, "update Show: failure", e);
-                        Toast toast = Toast.makeText(getApplicationContext(), "Show couldn't be updated. Try Again.", Toast.LENGTH_LONG);
+                        Log.d(TAG, "update Fromagerie: failure", e);
+                        Toast toast = Toast.makeText(getApplicationContext(), "Fromagerie couldn't be updated. Try Again.", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
             intent = new Intent(ShowModify.this, ShowDetails.class);
-            intent.putExtra("showName", show.getName());
+            intent.putExtra("showName", fromagerie.getName());
         } else {
-            Show newShow = new Show(name, description);
-            viewModel.createShow(newShow, new OnAsyncEventListener() {
+            Fromagerie newFromagerie = new Fromagerie(name);
+            viewModel.createFromagerie(newFromagerie, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
-                    Log.d(TAG, "create Show: success");
+                    Log.d(TAG, "create Fromagerie: success");
                 }
 
                 @Override
                 public void onFailure(Exception e) {
-                    Log.d(TAG, "create Show: failure", e);
-                    Toast toast = Toast.makeText(getApplicationContext(),"Show is already in the list. Try Again.", Toast.LENGTH_LONG);
+                    Log.d(TAG, "create Fromagerie: failure", e);
+                    Toast toast = Toast.makeText(getApplicationContext(),"Fromagerie is already in the list. Try Again.", Toast.LENGTH_LONG);
                     toast.show(); // Because showname is primary key, name cannot exist twice
                 }
             });

@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tv_shows.R;
-import com.example.tv_shows.db.entity.Episode;
+import com.example.tv_shows.db.entity.PriseEnCharge;
 import com.example.tv_shows.util.OnAsyncEventListener;
-import com.example.tv_shows.viewmodel.episode.EpisodeViewModel;
+import com.example.tv_shows.viewmodel.priseEnCharge.PriseEnChargeViewModel;
 
 public class EpisodeModify extends AppCompatActivity {
 
@@ -33,9 +33,9 @@ public class EpisodeModify extends AppCompatActivity {
     // Boolean that distinguishes between Add and Update Function
     private boolean isEditMode;
 
-    // Episode Entity & ViewModel
-    private EpisodeViewModel viewModel;
-    private Episode episode;
+    // PriseEnCharge Entity & ViewModel
+    private PriseEnChargeViewModel viewModel;
+    private PriseEnCharge priseEnCharge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,32 +43,32 @@ public class EpisodeModify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_episode_modify);
 
-        showName = getIntent().getStringExtra("showName"); // Attribute (foreign key) ShowName -> needed if new Episode is created
+        showName = getIntent().getStringExtra("showName"); // Attribute (foreign key) ShowName -> needed if new PriseEnCharge is created
         System.out.println("0: " + showName);
-        String idEpisode = getIntent().getStringExtra("idEpisode"); // Attribute (primary key) episodeID -> needed if existing Episode is updated
+        String idEpisode = getIntent().getStringExtra("idEpisode"); // Attribute (primary key) episodeID -> needed if existing PriseEnCharge is updated
 
         initiateView(); // Associate TextViews with xml declarations & Add TextChangedListener
 
         if (idEpisode==null) {
-            setTitle("Add Episode");
+            setTitle("Add PriseEnCharge");
             isEditMode = false;
         } else {
-            setTitle("Edit Episode");
+            setTitle("Edit PriseEnCharge");
             button.setText("Save Changes"); // Changing Text in the button if EditMode
             isEditMode = true;
         }
 
-        // Get Episode Details & Create ViewModel
-        EpisodeViewModel.Factory factory = new EpisodeViewModel.Factory(getApplication(), idEpisode, showName);
-        viewModel = ViewModelProviders.of(this, factory).get(EpisodeViewModel.class);
+        // Get PriseEnCharge Details & Create ViewModel
+        PriseEnChargeViewModel.Factory factory = new PriseEnChargeViewModel.Factory(getApplication(), idEpisode, showName);
+        viewModel = ViewModelProviders.of(this, factory).get(PriseEnChargeViewModel.class);
         if (isEditMode) {
-            viewModel.getEpisode().observe(this, episodeEntity -> {
+            viewModel.getPriseEnCharge().observe(this, episodeEntity -> {
                 if (episodeEntity != null) {
-                    episode = episodeEntity;
-                    editText1.setText(episode.getName());
-                    editText2.setText(episode.getId());
+                    priseEnCharge = episodeEntity;
+                    editText1.setText(priseEnCharge.getName());
+                    editText2.setText(priseEnCharge.getId());
                     editText2.setEnabled(false);
-                    editText3.setText(String.valueOf(episode.getLength()));
+                    editText3.setText(String.valueOf(priseEnCharge.getLength()));
                 }
             });
         }
@@ -98,36 +98,36 @@ public class EpisodeModify extends AppCompatActivity {
         Intent intent = new Intent(EpisodeModify.this, ShowDetails.class);
 
         if (isEditMode) {
-            episode.setName(name);
-            episode.setId(id);
-            episode.setLength(length);
-            viewModel.updateEpisode(episode, new OnAsyncEventListener() {
+            priseEnCharge.setName(name);
+            priseEnCharge.setId(id);
+            priseEnCharge.setLength(length);
+            viewModel.updatePriseEnCharge(priseEnCharge, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
-                    Log.d(TAG, "update Episode: success");
+                    Log.d(TAG, "update PriseEnCharge: success");
                 }
 
                 @Override
                 public void onFailure(Exception e) {
-                    Log.d(TAG, "update Episode: failure", e);
-                    Toast toast = Toast.makeText(getApplicationContext(), "Episode couldn't be updated. Try Again.", Toast.LENGTH_LONG);
+                    Log.d(TAG, "update PriseEnCharge: failure", e);
+                    Toast toast = Toast.makeText(getApplicationContext(), "PriseEnCharge couldn't be updated. Try Again.", Toast.LENGTH_LONG);
                     toast.show();
                 }
             });
-            intent.putExtra("showName", episode.getShowName()); // give ShowName to next activity
+            intent.putExtra("showName", priseEnCharge.getShowName()); // give ShowName to next activity
 
         } else {
-            Episode newEpisode = new Episode(id, name, length, showName);
-            viewModel.createEpisode(newEpisode, new OnAsyncEventListener() {
+            PriseEnCharge newPriseEnCharge = new PriseEnCharge(id, name, length, showName, , , , , , , , );
+            viewModel.createPriseEnCharge(newPriseEnCharge, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
-                    Log.d(TAG, "create Episode: success");
+                    Log.d(TAG, "create PriseEnCharge: success");
                 }
 
                 @Override
                 public void onFailure(Exception e) {
-                    Log.d(TAG, "create Episode: failure", e);
-                    Toast toast = Toast.makeText(getApplicationContext(), "Episode couldn't be inserted. Try Again.", Toast.LENGTH_LONG);
+                    Log.d(TAG, "create PriseEnCharge: failure", e);
+                    Toast toast = Toast.makeText(getApplicationContext(), "PriseEnCharge couldn't be inserted. Try Again.", Toast.LENGTH_LONG);
                     toast.show();
                 }
             });

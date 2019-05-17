@@ -2,19 +2,19 @@ package com.example.tv_shows;
 
 import android.app.Application;
 
-import com.example.tv_shows.db.repository.EpisodeRepository;
-import com.example.tv_shows.db.repository.ShowRepository;
+import com.example.tv_shows.db.repository.PriseEnChargeRepository;
+import com.example.tv_shows.db.repository.FromagerieRepository;
 
 /**
  * Android Application class. Used for accessing singletons.
  */
 public class BaseApp extends Application {
 
-    public EpisodeRepository getEpisodeRepository() {
-        return EpisodeRepository.getInstance();
+    public PriseEnChargeRepository getPriseEnChargeRepository() {
+        return PriseEnChargeRepository.getInstance();
     }
 
-    public ShowRepository getShowRepository() {
-        return ShowRepository.getInstance();
+    public FromagerieRepository getFromagerieRepository() {
+        return FromagerieRepository.getInstance();
     }
 }

@@ -17,11 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tv_shows.R;
-import com.example.tv_shows.db.entity.Episode;
-import com.example.tv_shows.db.entity.Show;
+import com.example.tv_shows.db.entity.Fromagerie;
+import com.example.tv_shows.db.entity.PriseEnCharge;
 import com.example.tv_shows.util.OnAsyncEventListener;
-import com.example.tv_shows.viewmodel.episode.EpisodeListViewModel;
-import com.example.tv_shows.viewmodel.show.ShowViewModel;
+import com.example.tv_shows.viewmodel.priseEnCharge.PriseEnChargeListViewModel;
+import com.example.tv_shows.viewmodel.fromagerie.FromagerieViewModel;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,39 +31,39 @@ public class ShowDetails extends AppCompatActivity {
 
     private static final String TAG = "ShowDetails";
 
-    // Show Entity & ViewModel
-    private Show show;
-    private ShowViewModel vmShow;
+    // Fromagerie Entity & ViewModel
+    private Fromagerie fromagerie;
+    private FromagerieViewModel vmShow;
 
-    // TextViews for all information about the Show
+    // TextViews for all information about the Fromagerie
     private TextView tvShowname;
     private TextView tvNumberEpisodes;
     private TextView tvDescription;
 
     // Listview for episode information (associated to EpisodeList ViewModel)
     private ListView listview;
-    private List<Episode> episodeList;
-    private EpisodeListViewModel vmEpisodeList;
+    private List<PriseEnCharge> priseEnChargeList;
+    private PriseEnChargeListViewModel vmEpisodeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_show_details);
-        setTitle("Show Details");
+        setTitle("Fromagerie Details");
 
-        // Get the showname of the show chosen by the user
+        // Get the showname of the fromagerie chosen by the user
         String showName = getIntent().getStringExtra("showName");
 
         // Associate TextViews with xml declarations
         initiateView();
 
-        // Get Show Details & Create ViewModels including List of Episodes
-        ShowViewModel.Factory showFac = new ShowViewModel.Factory(getApplication(), showName);
-        vmShow = ViewModelProviders.of(this, showFac).get(ShowViewModel.class);
-        vmShow.getShow().observe(this, showEntity -> {
+        // Get Fromagerie Details & Create ViewModels including List of Episodes
+        FromagerieViewModel.Factory showFac = new FromagerieViewModel.Factory(getApplication(), showName);
+        vmShow = ViewModelProviders.of(this, showFac).get(FromagerieViewModel.class);
+        vmShow.getFromagerie().observe(this, showEntity -> {
             if (showEntity != null) {
-                show = showEntity;
+                fromagerie = showEntity;
                 updateContent();
             }
         });
@@ -87,30 +87,30 @@ public class ShowDetails extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
-            // Insert Episode to Show
+            // Insert PriseEnCharge to Fromagerie
             case R.id.add:
                 intent = new Intent(ShowDetails.this, EpisodeModify.class);
-                intent.putExtra("showName", show.getName());
+                intent.putExtra("showName", fromagerie.getName());
                 break;
 
-            // Function "Update Show"
+            // Function "Update Fromagerie"
             case R.id.edit:
                 intent = new Intent(ShowDetails.this, ShowModify.class);
-                intent.putExtra("showName", show.getName());
+                intent.putExtra("showName", fromagerie.getName());
                 break;
 
-            // Function "Delete Show"
+            // Function "Delete Fromagerie"
             case R.id.delete:
-                vmShow.deleteShow(show, new OnAsyncEventListener() {
+                vmShow.deleteFromagerie(fromagerie, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "Show Details: success");
+                        Log.d(TAG, "Fromagerie Details: success");
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-                        Log.d(TAG, "Show Details: failure", e);
-                        Toast toast = Toast.makeText(getApplicationContext(),"Show couldn't be deleted. Try Again.", Toast.LENGTH_LONG);
+                        Log.d(TAG, "Fromagerie Details: failure", e);
+                        Toast toast = Toast.makeText(getApplicationContext(),"Fromagerie couldn't be deleted. Try Again.", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
@@ -133,27 +133,27 @@ public class ShowDetails extends AppCompatActivity {
     }
 
     private void updateContent() {
-        if (show != null) {
+        if (fromagerie != null) {
             createEpisodeList();
-            tvShowname.setText(show.getName());
-            tvDescription.setText(show.getDescription());
+            tvShowname.setText(fromagerie.getName());
+            tvDescription.setText(fromagerie.getDescription());
         }
     }
 
     private void createEpisodeList() {
-        episodeList = new ArrayList<>();
+        priseEnChargeList = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
-        EpisodeListViewModel.Factory episodesFac = new EpisodeListViewModel.Factory(getApplication(), show.getName());
-        vmEpisodeList = ViewModelProviders.of(this, episodesFac).get(EpisodeListViewModel.class);
-        vmEpisodeList.getEpisodes().observe(this, episodeEntities -> {
+        PriseEnChargeListViewModel.Factory episodesFac = new PriseEnChargeListViewModel.Factory(getApplication(), fromagerie.getName());
+        vmEpisodeList = ViewModelProviders.of(this, episodesFac).get(PriseEnChargeListViewModel.class);
+        vmEpisodeList.getPriseEnCharges().observe(this, episodeEntities -> {
             if (episodeEntities != null) {
-                episodeList = episodeEntities;
-                episodeList.sort(Comparator.comparingInt(Episode::getNumber));
+                priseEnChargeList = episodeEntities;
+                priseEnChargeList.sort(Comparator.comparingInt(PriseEnCharge::getNumber));
                 adapter.clear();
-                adapter.addAll(episodeList);
+                adapter.addAll(priseEnChargeList);
                 setListViewHeightBasedOnChildren(listview); // To stretch the listView dynamically, so it's not only showing the first object in the listview
-                tvNumberEpisodes.setText(episodeList.size() + " episodes"); // show the amount of saved episodes by show (dynamic)
+                tvNumberEpisodes.setText(priseEnChargeList.size() + " episodes"); // fromagerie the amount of saved episodes by fromagerie (dynamic)
             }
         });
         listview.setAdapter(adapter);
@@ -167,8 +167,8 @@ public class ShowDetails extends AppCompatActivity {
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
 
-                intent.putExtra("idEpisode", episodeList.get(position).getId()); // give episode id parameter so next activity knows the desired episode
-                intent.putExtra("showName", show.getName()); // give episode id parameter so next activity knows the desired episode
+                intent.putExtra("idEpisode", priseEnChargeList.get(position).getId()); // give episode id parameter so next activity knows the desired episode
+                intent.putExtra("showName", fromagerie.getName()); // give episode id parameter so next activity knows the desired episode
                 startActivity(intent);
             }
         });

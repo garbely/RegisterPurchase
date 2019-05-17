@@ -14,8 +14,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.tv_shows.R;
-import com.example.tv_shows.db.entity.Show;
-import com.example.tv_shows.viewmodel.show.ShowListViewModel;
+import com.example.tv_shows.db.entity.Fromagerie;
+import com.example.tv_shows.viewmodel.fromagerie.FromagerieListViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,9 +24,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // Required Showlist parameters associated to ViewModel
-    private List<Show> showList;
+    private List<Fromagerie> fromagerieList;
     private ListView listview;
-    private ShowListViewModel viewModel;
+    private FromagerieListViewModel viewModel;
     private ArrayAdapter adapter;
 
     @Override
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         // Create List by ViewModel
         listview = findViewById(R.id.listview);
 
-        showList = new ArrayList<>();
+        fromagerieList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,19 +49,19 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
                 );
-                intent.putExtra("showName", showList.get(position).getName());
+                intent.putExtra("showName", fromagerieList.get(position).getName());
                 startActivity(intent);
             }
         });
 
-        ShowListViewModel.Factory factory = new ShowListViewModel.Factory(getApplication());
-        viewModel = ViewModelProviders.of(this, factory).get(ShowListViewModel.class);
-        viewModel.getShows().observe(this, showEntities -> {
+        FromagerieListViewModel.Factory factory = new FromagerieListViewModel.Factory(getApplication());
+        viewModel = ViewModelProviders.of(this, factory).get(FromagerieListViewModel.class);
+        viewModel.getFromageries().observe(this, showEntities -> {
             if (showEntities != null) {
-                showList = showEntities;
-                Collections.sort(showList);
+                fromagerieList = showEntities;
+                Collections.sort(fromagerieList);
                 adapter.clear();
-                adapter.addAll(showList);
+                adapter.addAll(fromagerieList);
                 setListViewHeightBasedOnChildren(listview);
             }
         });
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
-            // Insert Show Function
+            // Insert Fromagerie Function
             case R.id.add:
                 intent = new Intent(MainActivity.this, ShowModify.class);
                 intent.putExtra("showName", ""); // need to give a default String value "" that the ShowModify activity understands it is AddMode, not EditMode
