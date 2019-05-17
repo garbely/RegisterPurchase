@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), ShowDetails.class);
+                Intent intent = new Intent(view.getContext(), FromagerieDetails.class);
 
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
             // Insert Fromagerie Function
             case R.id.add:
-                intent = new Intent(MainActivity.this, ShowModify.class);
-                intent.putExtra("fromagerieName", ""); // need to give a default String value "" that the ShowModify activity understands it is AddMode, not EditMode
+                intent = new Intent(MainActivity.this, FromagerieModify.class);
+                intent.putExtra("fromagerieName", ""); // need to give a default String value "" that the FromagerieModify activity understands it is AddMode, not EditMode
                 break;
 
             // Settings

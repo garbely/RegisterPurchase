@@ -4,8 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +14,9 @@ import com.example.tv_shows.db.entity.PriseEnCharge;
 import com.example.tv_shows.util.OnAsyncEventListener;
 import com.example.tv_shows.viewmodel.priseEnCharge.PriseEnChargeViewModel;
 
-public class EpisodeModify extends AppCompatActivity {
+public class PriseEnChargeModify extends AppCompatActivity {
 
-    private static final String TAG = "EpisodeModify";
+    private static final String TAG = "PriseEnChargeModify";
 
     private String fromagerieName;
 
@@ -118,7 +116,7 @@ public class EpisodeModify extends AppCompatActivity {
                              String qualite, String prixKilo, String prixFinale,
                              String reduction, String remarques) {
 
-        Intent intent = new Intent(EpisodeModify.this, ShowDetails.class);
+        Intent intent = new Intent(PriseEnChargeModify.this, FromagerieDetails.class);
 
         if (isEditMode) {
             priseEnCharge.setDate(date);

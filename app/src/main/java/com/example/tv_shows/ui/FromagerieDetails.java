@@ -26,7 +26,7 @@ import com.example.tv_shows.viewmodel.fromagerie.FromagerieViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowDetails extends AppCompatActivity {
+public class FromagerieDetails extends AppCompatActivity {
 
     private static final String TAG = "FromagerieDetails";
 
@@ -87,13 +87,13 @@ public class ShowDetails extends AppCompatActivity {
 
             // Insert PriseEnCharge to Fromagerie
             case R.id.add:
-                intent = new Intent(ShowDetails.this, EpisodeModify.class);
+                intent = new Intent(FromagerieDetails.this, PriseEnChargeModify.class);
                 intent.putExtra("fromagerieName", fromagerie.getName());
                 break;
 
             // Function "Update Fromagerie"
             case R.id.edit:
-                intent = new Intent(ShowDetails.this, ShowModify.class);
+                intent = new Intent(FromagerieDetails.this, FromagerieModify.class);
                 intent.putExtra("fromagerieName", fromagerie.getName());
                 break;
 
@@ -112,7 +112,7 @@ public class ShowDetails extends AppCompatActivity {
                         toast.show();
                     }
                 });
-                intent = new Intent(ShowDetails.this, MainActivity.class);  // go back to mainpage (List of shows)
+                intent = new Intent(FromagerieDetails.this, MainActivity.class);  // go back to mainpage (List of shows)
                 break;
         }
         intent.setFlags(
@@ -156,7 +156,7 @@ public class ShowDetails extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), EpisodeDetails.class);
+                Intent intent = new Intent(view.getContext(), PriseEnChargeDetails.class);
 
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |

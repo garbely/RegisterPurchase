@@ -15,9 +15,9 @@ import com.example.tv_shows.db.entity.PriseEnCharge;
 import com.example.tv_shows.util.OnAsyncEventListener;
 import com.example.tv_shows.viewmodel.priseEnCharge.PriseEnChargeViewModel;
 
-public class EpisodeDetails extends AppCompatActivity {
+public class PriseEnChargeDetails extends AppCompatActivity {
 
-    private static final String TAG = "EpisodeDetails";
+    private static final String TAG = "PriseEnChargeDetails";
 
     // PriseEnCharge Entity & ViewModel
     private PriseEnCharge priseEnCharge;
@@ -86,8 +86,8 @@ public class EpisodeDetails extends AppCompatActivity {
 
             // Update Function
             case R.id.edit:
-                intent = new Intent(EpisodeDetails.this, EpisodeModify.class);
-                intent.putExtra("idPriseEnCharge", priseEnCharge.getId()); // give priseEnCharge ID to the EpisodeModify activity
+                intent = new Intent(PriseEnChargeDetails.this, PriseEnChargeModify.class);
+                intent.putExtra("idPriseEnCharge", priseEnCharge.getId()); // give priseEnCharge ID to the PriseEnChargeModify activity
                 break;
 
             // Delete Function
@@ -105,10 +105,10 @@ public class EpisodeDetails extends AppCompatActivity {
                         toast.show();
                     }
                 });
-                intent = new Intent(EpisodeDetails.this, ShowDetails.class);
+                intent = new Intent(PriseEnChargeDetails.this, FromagerieDetails.class);
                 break;
         }
-        intent.putExtra("fromagerieName", priseEnCharge.getFromagerieName()); // give ShowName to the ShowDetails activity
+        intent.putExtra("fromagerieName", priseEnCharge.getFromagerieName()); // give ShowName to the FromagerieDetails activity
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION |
                         Intent.FLAG_ACTIVITY_NO_HISTORY

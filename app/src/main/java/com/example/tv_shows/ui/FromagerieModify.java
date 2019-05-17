@@ -16,9 +16,9 @@ import com.example.tv_shows.db.entity.Fromagerie;
 import com.example.tv_shows.util.OnAsyncEventListener;
 import com.example.tv_shows.viewmodel.fromagerie.FromagerieViewModel;
 
-public class ShowModify extends AppCompatActivity {
+public class FromagerieModify extends AppCompatActivity {
 
-    private static final String TAG = "ShowModify";
+    private static final String TAG = "FromagerieModify";
 
     private String fromagerieName;
     private boolean isEditMode;
@@ -102,7 +102,7 @@ public class ShowModify extends AppCompatActivity {
                         toast.show();
                     }
                 });
-            intent = new Intent(ShowModify.this, ShowDetails.class);
+            intent = new Intent(FromagerieModify.this, FromagerieDetails.class);
             intent.putExtra("fromagerieName", fromagerie.getName());
         } else {
             Fromagerie newFromagerie = new Fromagerie(name);
@@ -119,7 +119,7 @@ public class ShowModify extends AppCompatActivity {
                     toast.show(); // Because showname is primary key, name cannot exist twice
                 }
             });
-            intent = new Intent(ShowModify.this, MainActivity.class);
+            intent = new Intent(FromagerieModify.this, MainActivity.class);
         }
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION |

@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".ui.ShowDetails"
+            android:name=".ui.FromagerieDetails"
             android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,27 +32,27 @@
         </activity>
 
         <activity
-            android:name=".ui.ShowModify"
-            android:parentActivityName=".ui.ShowDetails">
+            android:name=".ui.FromagerieModify"
+            android:parentActivityName=".ui.FromagerieDetails">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.ShowDetails" />
+                android:value=".ui.FromagerieDetails" />
         </activity>
 
         <activity
-            android:name=".ui.EpisodeDetails"
-            android:parentActivityName=".ui.ShowDetails">
+            android:name=".ui.PriseEnChargeDetails"
+            android:parentActivityName=".ui.FromagerieDetails">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.ShowDetails" />
+                android:value=".ui.FromagerieDetails" />
         </activity>
 
         <activity
-            android:name=".ui.EpisodeModify"
-            android:parentActivityName=".ui.EpisodeDetails">
+            android:name=".ui.PriseEnChargeModify"
+            android:parentActivityName=".ui.PriseEnChargeDetails">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.EpisodeDetails" />
+                android:value=".ui.PriseEnChargeDetails" />
         </activity>
 
         <activity
