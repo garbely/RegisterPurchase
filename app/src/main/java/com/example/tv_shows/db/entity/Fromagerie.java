@@ -11,6 +11,7 @@ import java.util.Map;
 public class Fromagerie implements Comparable {
 
     private String name;
+    private String language;
 
     @Ignore
     public Fromagerie() {
@@ -27,6 +28,14 @@ public class Fromagerie implements Comparable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     @Override
@@ -52,6 +61,7 @@ public class Fromagerie implements Comparable {
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", name);
+        result.put("language", language);
 
         return result;
     }

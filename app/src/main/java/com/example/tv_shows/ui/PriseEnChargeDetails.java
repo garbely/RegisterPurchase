@@ -44,7 +44,7 @@ public class PriseEnChargeDetails extends AppCompatActivity {
 
         // Get the showname and the ID of the priseEnCharge chosen by the user
         String idEpisode = getIntent().getStringExtra("idPriseEnCharge");
-        String showName = getIntent().getStringExtra("fromagerieName");
+        String showName = getIntent().getStringExtra("fromagiereName");
 
         // Associate TextViews with xml declarations
         initiateView();

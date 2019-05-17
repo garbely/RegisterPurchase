@@ -163,8 +163,8 @@ public class FromagerieDetails extends AppCompatActivity {
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
 
-                intent.putExtra("idEpisode", priseEnChargeList.get(position).getId()); // give episode id parameter so next activity knows the desired episode
-                intent.putExtra("showName", fromagerie.getName()); // give episode id parameter so next activity knows the desired episode
+                intent.putExtra("idPriseEnCharge", priseEnChargeList.get(position).getId()); // give episode id parameter so next activity knows the desired episode
+                intent.putExtra("fromagiereName", fromagerie.getName()); // give episode id parameter so next activity knows the desired episode
                 startActivity(intent);
             }
         });
