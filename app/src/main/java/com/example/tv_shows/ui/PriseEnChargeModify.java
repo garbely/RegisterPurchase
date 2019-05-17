@@ -46,7 +46,7 @@ public class PriseEnChargeModify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_priseEnCharge_modify);
+        setContentView(R.layout.activity_charge_modify);
 
         fromagerieName = getIntent().getStringExtra("fromagerieName"); // Attribute (foreign key) ShowName -> needed if new PriseEnCharge is created
         System.out.println("0: " + fromagerieName);

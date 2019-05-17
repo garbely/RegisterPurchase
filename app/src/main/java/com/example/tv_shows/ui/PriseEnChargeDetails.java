@@ -39,7 +39,7 @@ public class PriseEnChargeDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_priseEnCharge_details);
+        setContentView(R.layout.activity_charge_details);
         setTitle("PriseEnCharge Details");
 
         // Get the showname and the ID of the priseEnCharge chosen by the user
