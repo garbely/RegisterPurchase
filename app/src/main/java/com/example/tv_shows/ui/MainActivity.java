@@ -2,8 +2,11 @@ package com.example.tv_shows.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.tv_shows.R;
 import com.example.tv_shows.db.entity.Fromagerie;
@@ -31,6 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ActionBar bar = getSupportActionBar();
+        if(bar!=null){
+            TextView tv = new TextView(getApplicationContext());
+            ViewGroup.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    android.app.ActionBar.LayoutParams.MATCH_PARENT, // Width of TextView
+                    android.app.ActionBar.LayoutParams.WRAP_CONTENT); // Height of TextView
+            tv.setLayoutParams(lp);
+            tv.setText(bar.getTitle());
+            tv.setTextColor(Color.WHITE);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            bar.setCustomView(tv);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Fromageries");
@@ -39,7 +59,22 @@ public class MainActivity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
 
         fromagerieList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1){
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent){
+                /// Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                // Set the text size 25 dip for ListView each item
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,22);
+
+                // Return the view
+                return view;
+            }
+        };
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -2,9 +2,13 @@ package com.example.tv_shows.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +51,27 @@ public class FromagerieDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ActionBar bar = getSupportActionBar();
+        if(bar!=null){
+            TextView tv = new TextView(getApplicationContext());
+            ViewGroup.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    android.app.ActionBar.LayoutParams.MATCH_PARENT, // Width of TextView
+                    android.app.ActionBar.LayoutParams.WRAP_CONTENT); // Height of TextView
+            tv.setLayoutParams(lp);
+            tv.setText(bar.getTitle());
+            tv.setTextColor(Color.WHITE);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            bar.setCustomView(tv);
+        }
+
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_fromagerie_details);
         setTitle("Fromagerie Details");
 
-        // Get the showname of the fromagerie chosen by the user
+        // Get the fromagerieName of the fromagerie chosen by the user
         String fromagerieName = getIntent().getStringExtra("fromagerieName");
 
         // Associate TextViews with xml declarations
@@ -141,7 +161,22 @@ public class FromagerieDetails extends AppCompatActivity {
 
     private void createPrisEnCHargeList() {
         priseEnChargeList = new ArrayList<>();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                /// Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                // Set the text size 25 dip for ListView each item
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,22);
+
+                // Return the view
+                return view;
+            }
+        };
 
         PriseEnChargeListViewModel.Factory episodesFac = new PriseEnChargeListViewModel.Factory(getApplication(), fromagerie.getName());
         vmPrisEnChargesList = ViewModelProviders.of(this, episodesFac).get(PriseEnChargeListViewModel.class);

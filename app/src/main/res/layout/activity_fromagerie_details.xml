@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:nestedScrollingEnabled="true"
-        android:scrollbarSize="3dp"
+        android:scrollbarSize="5dp"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical"
         android:scrollingCache="true"

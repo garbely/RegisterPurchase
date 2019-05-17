@@ -2,11 +2,16 @@ package com.example.tv_shows.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +42,21 @@ public class PriseEnChargeDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ActionBar bar = getSupportActionBar();
+        if(bar!=null){
+            TextView tv = new TextView(getApplicationContext());
+            ViewGroup.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    android.app.ActionBar.LayoutParams.MATCH_PARENT, // Width of TextView
+                    android.app.ActionBar.LayoutParams.WRAP_CONTENT); // Height of TextView
+            tv.setLayoutParams(lp);
+            tv.setText(bar.getTitle());
+            tv.setTextColor(Color.WHITE);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            bar.setCustomView(tv);
+        }
+
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_charge_details);
