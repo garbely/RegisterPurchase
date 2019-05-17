@@ -20,12 +20,11 @@ public class ShowModify extends AppCompatActivity {
 
     private static final String TAG = "ShowModify";
 
-    private String showName;
+    private String fromagerieName;
     private boolean isEditMode;
 
     // Initiate EditTexts to change the 2 attributes
     private EditText editText1;
-    private EditText editText2;
 
     // Button to save changed attribute/s
     private Button button;
@@ -40,12 +39,12 @@ public class ShowModify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_show_modify);
 
-        showName = getIntent().getStringExtra("showName"); // Attribute (primary key) ShowName
+        fromagerieName = getIntent().getStringExtra("fromagerieName"); // Attribute (primary key) ShowName
 
         initiateView(); // Associate TextViews with xml declarations & Add TextChangedListener
 
         // Define if EditMode or not (Add mode)
-        if (showName.equals("")) {
+        if (fromagerieName.equals("")) {
             setTitle("Add Fromagerie");
             isEditMode = false;
         } else {
@@ -55,7 +54,7 @@ public class ShowModify extends AppCompatActivity {
         }
 
         // Get Fromagerie Details & Create ViewModel
-        FromagerieViewModel.Factory factory = new FromagerieViewModel.Factory(getApplication(), showName);
+        FromagerieViewModel.Factory factory = new FromagerieViewModel.Factory(getApplication(), fromagerieName);
         viewModel = ViewModelProviders.of(this, factory).get(FromagerieViewModel.class);
 
         if (isEditMode) {
@@ -69,8 +68,7 @@ public class ShowModify extends AppCompatActivity {
         }
 
         button.setOnClickListener(view -> {
-            saveChanges(editText1.getText().toString(),
-                    editText2.getText().toString()
+            saveChanges(editText1.getText().toString()
             );
             onBackPressed();
         });
@@ -81,16 +79,15 @@ public class ShowModify extends AppCompatActivity {
         button = (Button) findViewById(R.id.save);
 
         editText1.addTextChangedListener(loginTextWatcher);
-        editText2.addTextChangedListener(loginTextWatcher);
     }
 
-    private void saveChanges(String name, String description) {
+    private void saveChanges(String name) {
 
         Intent intent;
 
         if (isEditMode) {
-                String substringShowName = name.substring(0, name.length() - 15); // Delete part of the String -> (Not editable)
-                fromagerie.setName(substringShowName);
+                String substringFromagerieName = name.substring(0, name.length() - 15); // Delete part of the String -> (Not editable)
+                fromagerie.setName(substringFromagerieName);
                 System.out.println(fromagerie.getName());
                 viewModel.updateFromagerie(fromagerie, new OnAsyncEventListener() {
                     @Override
@@ -106,7 +103,7 @@ public class ShowModify extends AppCompatActivity {
                     }
                 });
             intent = new Intent(ShowModify.this, ShowDetails.class);
-            intent.putExtra("showName", fromagerie.getName());
+            intent.putExtra("fromagerieName", fromagerie.getName());
         } else {
             Fromagerie newFromagerie = new Fromagerie(name);
             viewModel.createFromagerie(newFromagerie, new OnAsyncEventListener() {
@@ -139,9 +136,8 @@ public class ShowModify extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             String nameInput = editText1.getText().toString().trim();
-            String descInput = editText2.getText().toString().trim();
 
-            button.setEnabled(!nameInput.isEmpty() && !descInput.isEmpty());
+            button.setEnabled(!nameInput.isEmpty());
         }
 
         @Override

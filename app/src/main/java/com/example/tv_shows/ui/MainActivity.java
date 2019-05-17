@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
                 );
-                intent.putExtra("showName", fromagerieList.get(position).getName());
+                intent.putExtra("fromagerieName", fromagerieList.get(position).getName());
                 startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             // Insert Fromagerie Function
             case R.id.add:
                 intent = new Intent(MainActivity.this, ShowModify.class);
-                intent.putExtra("showName", ""); // need to give a default String value "" that the ShowModify activity understands it is AddMode, not EditMode
+                intent.putExtra("fromagerieName", ""); // need to give a default String value "" that the ShowModify activity understands it is AddMode, not EditMode
                 break;
 
             // Settings
