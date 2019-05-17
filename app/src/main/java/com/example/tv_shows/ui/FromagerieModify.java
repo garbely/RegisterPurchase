@@ -111,7 +111,7 @@ public class FromagerieModify extends AppCompatActivity {
             intent = new Intent(FromagerieModify.this, FromagerieDetails.class);
             intent.putExtra("fromagerieName", fromagerie.getName());
         } else {
-            Fromagerie newFromagerie = new Fromagerie(name);
+            Fromagerie newFromagerie = new Fromagerie(name, location);
             viewModel.createFromagerie(newFromagerie, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {

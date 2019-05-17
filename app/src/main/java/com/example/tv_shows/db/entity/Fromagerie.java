@@ -17,8 +17,9 @@ public class Fromagerie implements Comparable {
     public Fromagerie() {
     }
 
-    public Fromagerie(@NonNull String name) {
+    public Fromagerie(@NonNull String name, String location) {
         this.name = name;
+        this.location = location;
     }
 
     @Exclude
