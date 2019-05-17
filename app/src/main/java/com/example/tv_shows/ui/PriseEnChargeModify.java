@@ -101,7 +101,7 @@ public class PriseEnChargeModify extends AppCompatActivity {
     }
 
     private void initiateView() {
-        editText1 = (EditText) findViewById(R.id.name);
+        editText1 = (EditText) findViewById(R.id.date);
         editText2 = (EditText) findViewById(R.id.date_peser);
         editText3 = (EditText) findViewById(R.id.nombre);
         editText4 = (EditText) findViewById(R.id.sorte);
