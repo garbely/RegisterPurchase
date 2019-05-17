@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Show Tracker</string>
+
+    <string-array name="shows_array">
+        <item>Prison Break</item>
+        <item>Scrubs</item>
+        <item>Big Bang Theory</item>
+        <item>How I Met Your Mother</item>
+        <item>White Collar</item>
+        <item>Forever</item>
+        <item>Altered Carbon</item>
+        <item>Two and a half men</item>
+        <item>Schwarzwaldklinik</item>
+        <item>Tatort</item>
+        <item>Der Bestatter</item>
+        <item>Stranger Things</item>
+        <item>Black Mirror</item>
+        <item>Pinky Blinders</item>
+    </string-array>
+
+    <string-array name="episodes_array">
+        <item>Pilot</item>
+        <item>Bruderherz</item>
+        <item>Wärter</item>
+    </string-array>
+
+
+</resources>

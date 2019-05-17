@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:selectable="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_info"
+        android:title="About"
+        android:summary="This application was build by Patrick Garbely and Xavier Kalbermatten in March 2019."/>
+</PreferenceScreen>
