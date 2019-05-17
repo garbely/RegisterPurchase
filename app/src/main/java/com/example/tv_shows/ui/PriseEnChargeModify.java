@@ -104,6 +104,13 @@ public class PriseEnChargeModify extends AppCompatActivity {
         editText1 = (EditText) findViewById(R.id.date);
         editText2 = (EditText) findViewById(R.id.date_peser);
         editText3 = (EditText) findViewById(R.id.nombre);
+        editText4 = (EditText) findViewById(R.id.sorte);
+        editText5 = (EditText) findViewById(R.id.poids);
+        editText6 = (EditText) findViewById(R.id.qualite);
+        editText7 = (EditText) findViewById(R.id.prixKilo);
+        editText8 = (EditText) findViewById(R.id.reduction);
+        editText9 = (EditText) findViewById(R.id.prixFinale);
+        editText10 = (EditText) findViewById(R.id.remarque);
         button = (Button) findViewById(R.id.save);
 /*
         editText1.addTextChangedListener(loginTextWatcher);
@@ -147,7 +154,7 @@ public class PriseEnChargeModify extends AppCompatActivity {
 
         } else {
             PriseEnCharge newPriseEnCharge = new PriseEnCharge(date, date_peser, nombre, sorte,
-                    poids, qualite, prixKilo, prixFinale, reduction, remarques);
+                    poids, qualite, prixKilo, prixFinale, reduction, remarques, fromagerieName);
 
             viewModel.createPriseEnCharge(newPriseEnCharge, new OnAsyncEventListener() {
                 @Override

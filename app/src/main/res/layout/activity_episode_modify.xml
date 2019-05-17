@@ -8,86 +8,94 @@
     android:orientation="vertical"
     tools:context=".ui.PriseEnChargeModify">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Date" />
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Date" />
+            <EditText
+                android:id="@+id/date_peser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Date peser" />
 
-    <EditText
-        android:id="@+id/date_peser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Date peser" />
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:inputType="number"
+                android:hint="nombre" />
 
-    <EditText
-        android:id="@+id/nombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:inputType="number"
-        android:hint="nombre" />
+            <EditText
+                android:id="@+id/sorte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Sorte" />
 
-    <EditText
-        android:id="@+id/sorte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Sorte" />
+            <EditText
+                android:id="@+id/poids"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:inputType="number"
+                android:hint="poids" />
 
-    <EditText
-        android:id="@+id/poids"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:inputType="number"
-        android:hint="poids" />
+            <EditText
+                android:id="@+id/qualite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Qualite" />
 
-    <EditText
-        android:id="@+id/qualite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Qualite" />
+            <EditText
+                android:id="@+id/prixKilo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Prix Kilo" />
 
-    <EditText
-        android:id="@+id/prixKilo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Prix Kilo" />
+            <EditText
+                android:id="@+id/reduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:inputType="number"
+                android:hint="Reduction" />
 
-    <EditText
-        android:id="@+id/reduction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:inputType="number"
-        android:hint="Reduction" />
-
-    <EditText
-        android:id="@+id/prixFinale"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Prix finale" />
-
-
-    <EditText
-        android:id="@+id/remarque"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:autoSizeTextType="uniform"
-        android:layout_marginTop="20dp"
-        android:hint="Show Description"/>
+            <EditText
+                android:id="@+id/prixFinale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Prix finale" />
 
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save" />
+            <EditText
+                android:id="@+id/remarque"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:autoSizeTextType="uniform"
+                android:layout_marginTop="20dp"
+                android:hint="Show Description"/>
+
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

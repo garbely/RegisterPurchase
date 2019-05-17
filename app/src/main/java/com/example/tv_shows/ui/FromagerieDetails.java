@@ -149,7 +149,7 @@ public class FromagerieDetails extends AppCompatActivity {
                 adapter.clear();
                 adapter.addAll(priseEnChargeList);
                 setListViewHeightBasedOnChildren(listview); // To stretch the listView dynamically, so it's not only showing the first object in the listview
-                tvNumberPrisEnCharges.setText(priseEnChargeList.size() + " episodes"); // fromagerie the amount of saved episodes by fromagerie (dynamic)
+                tvNumberPrisEnCharges.setText(priseEnChargeList.size() + " entrées"); // fromagerie the amount of saved episodes by fromagerie (dynamic)
             }
         });
         listview.setAdapter(adapter);

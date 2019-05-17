@@ -29,7 +29,7 @@ public class PriseEnCharge implements Comparable {
     public PriseEnCharge(String date, String date_peser,
                          String nombre, String sorte, String poids,
                          String qualite, String prixKilo, String prixFinale,
-                         String reduction, String remarques) {
+                         String reduction, String remarques, String fromagerieName) {
         this.id = id;
         this.date =date;
         this.date_peser = date_peser;
@@ -41,6 +41,7 @@ public class PriseEnCharge implements Comparable {
         this.prixFinale = prixFinale;
         this.reduction = reduction;
         this.remarques = remarques;
+        this.fromagerieName = fromagerieName;
     }
 
     @Exclude
@@ -169,6 +170,7 @@ public class PriseEnCharge implements Comparable {
         result.put("prixFinale", prixFinale);
         result.put("reduction", reduction);
         result.put("remarques", remarques);
+        result.put("fromagerieName", fromagerieName);
 
         return result;
     }

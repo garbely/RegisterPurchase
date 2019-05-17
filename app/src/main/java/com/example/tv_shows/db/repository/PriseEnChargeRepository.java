@@ -46,16 +46,12 @@ public class PriseEnChargeRepository {
     }
 
     public void insert(final PriseEnCharge priseEnCharge, OnAsyncEventListener callback) {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("fromageries")
-                .child(priseEnCharge.getFromagerieName())
-                .child("priseEnCharges");
-
+        String id = FirebaseDatabase.getInstance().getReference("fromageries").push().getKey();
         FirebaseDatabase.getInstance()
                 .getReference("fromageries")
                 .child(priseEnCharge.getFromagerieName())
                 .child("priseEnCharges")
-                .child(priseEnCharge.getId())
+                .child(id)
                 .setValue(priseEnCharge, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
