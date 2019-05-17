@@ -25,6 +25,7 @@ public class FromagerieModify extends AppCompatActivity {
 
     // Initiate EditTexts to change the 2 attributes
     private EditText editText1;
+    private EditText editText2;
 
     // Button to save changed attribute/s
     private Button button;
@@ -37,7 +38,7 @@ public class FromagerieModify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_show_modify);
+        setContentView(R.layout.activity_fromagerie_modify);
 
         fromagerieName = getIntent().getStringExtra("fromagerieName"); // Attribute (primary key) ShowName
 
@@ -63,31 +64,36 @@ public class FromagerieModify extends AppCompatActivity {
                     fromagerie = showEntity;
                     editText1.setText(fromagerie.getName() + " (Not editable)"); // Inform user that Name is not editable -> Primary Key
                     editText1.setEnabled(false);
+                    editText2.setText(fromagerie.getLocation());
                 }
             });
         }
 
         button.setOnClickListener(view -> {
-            saveChanges(editText1.getText().toString()
+            saveChanges(editText1.getText().toString(),
+                    editText2.getText().toString()
             );
             onBackPressed();
         });
     }
 
     private void initiateView() {
-        editText1 = (EditText) findViewById(R.id.date);
+        editText1 = (EditText) findViewById(R.id.name);
+        editText2 = (EditText) findViewById(R.id.location);
         button = (Button) findViewById(R.id.save);
 
         editText1.addTextChangedListener(loginTextWatcher);
+        editText2.addTextChangedListener(loginTextWatcher);
     }
 
-    private void saveChanges(String name) {
+    private void saveChanges(String name, String location) {
 
         Intent intent;
 
         if (isEditMode) {
                 String substringFromagerieName = name.substring(0, name.length() - 15); // Delete part of the String -> (Not editable)
                 fromagerie.setName(substringFromagerieName);
+                fromagerie.setLocation((location));
                 System.out.println(fromagerie.getName());
                 viewModel.updateFromagerie(fromagerie, new OnAsyncEventListener() {
                     @Override

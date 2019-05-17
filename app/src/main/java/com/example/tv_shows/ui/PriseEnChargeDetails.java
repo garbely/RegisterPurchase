@@ -39,7 +39,7 @@ public class PriseEnChargeDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_episode_details);
+        setContentView(R.layout.activity_priseEnCharge_details);
         setTitle("PriseEnCharge Details");
 
         // Get the showname and the ID of the priseEnCharge chosen by the user
@@ -119,7 +119,7 @@ public class PriseEnChargeDetails extends AppCompatActivity {
     }
 
     private void initiateView() {
-        tvDate = findViewById(R.id.date);
+        tvDate = findViewById(R.id.name);
         tvDatePeser = findViewById(R.id.date_peser);
         tvNombre = findViewById(R.id.nombre);
         tvSorte = findViewById(R.id.sorte);

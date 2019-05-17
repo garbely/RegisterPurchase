@@ -9,11 +9,18 @@
     tools:context=".ui.PriseEnChargeModify">
 
     <EditText
-        android:id="@+id/date"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="fromagerie Name" />
+        android:hint="Nom de la fromagerie" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Location"/>
 
     <Button
         android:id="@+id/save"

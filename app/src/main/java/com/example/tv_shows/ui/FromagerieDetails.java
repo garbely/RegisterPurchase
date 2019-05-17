@@ -37,6 +37,7 @@ public class FromagerieDetails extends AppCompatActivity {
     // TextViews for all information about the Fromagerie
     private TextView tvFromageriename;
     private TextView tvNumberPrisEnCharges;
+    private TextView tvLocation;
 
     // Listview for prisEnCharges information (associated to PrisEnChargesList ViewModel)
     private ListView listview;
@@ -47,7 +48,7 @@ public class FromagerieDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_show_details);
+        setContentView(R.layout.activity_fromagerie_details);
         setTitle("Fromagerie Details");
 
         // Get the showname of the fromagerie chosen by the user
@@ -124,8 +125,9 @@ public class FromagerieDetails extends AppCompatActivity {
     }
 
     private void initiateView() {
-        tvFromageriename = findViewById(R.id.date);
+        tvFromageriename = findViewById(R.id.name);
         tvNumberPrisEnCharges = findViewById(R.id.episodes);
+        tvLocation = findViewById(R.id.location);
         listview = findViewById(R.id.listview);
     }
 
@@ -133,6 +135,7 @@ public class FromagerieDetails extends AppCompatActivity {
         if (fromagerie != null) {
             createPrisEnCHargeList();
             tvFromageriename.setText(fromagerie.getName());
+            tvLocation.setText(fromagerie.getLocation());
         }
     }
 

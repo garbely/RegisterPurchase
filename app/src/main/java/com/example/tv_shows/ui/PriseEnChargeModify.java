@@ -46,7 +46,7 @@ public class PriseEnChargeModify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_episode_modify);
+        setContentView(R.layout.activity_priseEnCharge_modify);
 
         fromagerieName = getIntent().getStringExtra("fromagerieName"); // Attribute (foreign key) ShowName -> needed if new PriseEnCharge is created
         System.out.println("0: " + fromagerieName);
@@ -101,7 +101,7 @@ public class PriseEnChargeModify extends AppCompatActivity {
     }
 
     private void initiateView() {
-        editText1 = (EditText) findViewById(R.id.date);
+        editText1 = (EditText) findViewById(R.id.name);
         editText2 = (EditText) findViewById(R.id.date_peser);
         editText3 = (EditText) findViewById(R.id.nombre);
         editText4 = (EditText) findViewById(R.id.sorte);

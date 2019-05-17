@@ -13,7 +13,7 @@
     tools:context=".ui.FromagerieDetails">
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -28,6 +28,13 @@
         android:layout_gravity="center"
         android:textStyle="italic" />
 
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAlignment="textStart"
+        android:padding="20dp" />
     <TextView
         android:id="@+id/listTitle"
         android:layout_width="wrap_content"

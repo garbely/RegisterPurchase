@@ -11,7 +11,7 @@ import java.util.Map;
 public class Fromagerie implements Comparable {
 
     private String name;
-    private String language;
+    private String location;
 
     @Ignore
     public Fromagerie() {
@@ -30,12 +30,12 @@ public class Fromagerie implements Comparable {
         this.name = name;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getLocation() {
+        return location;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Fromagerie implements Comparable {
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", name);
-        result.put("language", language);
+        result.put("location", location);
 
         return result;
     }
