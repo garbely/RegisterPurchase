@@ -26,10 +26,10 @@ public class PriseEnCharge implements Comparable {
     public PriseEnCharge() {
     }
 
-    public PriseEnCharge(String id, String date, String date_peser,
+    public PriseEnCharge(String date, String date_peser,
                          String nombre, String sorte, String poids,
                          String qualite, String prixKilo, String prixFinale,
-                         String reduction, String remarques, String fromagerieName) {
+                         String reduction, String remarques) {
         this.id = id;
         this.date =date;
         this.date_peser = date_peser;
@@ -41,7 +41,6 @@ public class PriseEnCharge implements Comparable {
         this.prixFinale = prixFinale;
         this.reduction = reduction;
         this.remarques = remarques;
-        this.fromagerieName = fromagerieName;
     }
 
     @Exclude

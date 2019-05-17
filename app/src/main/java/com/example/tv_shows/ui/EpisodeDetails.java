@@ -24,9 +24,16 @@ public class EpisodeDetails extends AppCompatActivity {
     private PriseEnChargeViewModel viewModel;
 
     // 3 TextViews for all attributes
-    private TextView tvEpisodeName;
-    private TextView tvEpisodeNumber;
-    private TextView tvLength;
+    private TextView tvDate;
+    private TextView tvDatePeser;
+    private TextView tvNombre;
+    private TextView tvSorte;
+    private TextView tvPoids;
+    private TextView tvQualite;
+    private TextView tvPrixKilo;
+    private TextView tvReduction;
+    private TextView tvPrixFinale;
+    private TextView tvRemarque;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +43,8 @@ public class EpisodeDetails extends AppCompatActivity {
         setTitle("PriseEnCharge Details");
 
         // Get the showname and the ID of the priseEnCharge chosen by the user
-        String idEpisode = getIntent().getStringExtra("idEpisode");
-        String showName = getIntent().getStringExtra("showName");
+        String idEpisode = getIntent().getStringExtra("idPriseEnCharge");
+        String showName = getIntent().getStringExtra("fromagerieName");
 
         // Associate TextViews with xml declarations
         initiateView();
@@ -80,7 +87,7 @@ public class EpisodeDetails extends AppCompatActivity {
             // Update Function
             case R.id.edit:
                 intent = new Intent(EpisodeDetails.this, EpisodeModify.class);
-                intent.putExtra("idEpisode", priseEnCharge.getId()); // give priseEnCharge ID to the EpisodeModify activity
+                intent.putExtra("idPriseEnCharge", priseEnCharge.getId()); // give priseEnCharge ID to the EpisodeModify activity
                 break;
 
             // Delete Function
@@ -101,7 +108,7 @@ public class EpisodeDetails extends AppCompatActivity {
                 intent = new Intent(EpisodeDetails.this, ShowDetails.class);
                 break;
         }
-        intent.putExtra("showName", priseEnCharge.getFromagerieName()); // give ShowName to the ShowDetails activity
+        intent.putExtra("fromagerieName", priseEnCharge.getFromagerieName()); // give ShowName to the ShowDetails activity
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION |
                         Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -112,16 +119,31 @@ public class EpisodeDetails extends AppCompatActivity {
     }
 
     private void initiateView() {
-        tvEpisodeName = findViewById(R.id.date);
-        tvEpisodeNumber = findViewById(R.id.date_peser);
-        tvLength = findViewById(R.id.nombre);
+        tvDate = findViewById(R.id.date);
+        tvDatePeser = findViewById(R.id.date_peser);
+        tvNombre = findViewById(R.id.nombre);
+        tvSorte = findViewById(R.id.sorte);
+        tvPoids = findViewById(R.id.poids);
+        tvQualite = findViewById(R.id.qualite);
+        tvPrixKilo = findViewById(R.id.prixKilo);
+        tvReduction = findViewById(R.id.reduction);
+        tvPrixFinale = findViewById(R.id.prixFinale);
+        tvRemarque = findViewById(R.id.remarque);
     }
 
     private void updateContent() {
         if (priseEnCharge != null) {
-            tvEpisodeName.setText(priseEnCharge.getDate());
-            tvEpisodeNumber.setText("PriseEnCharge Number: #" + priseEnCharge.getId());
-            tvLength.setText("Length: " + priseEnCharge.getPoids() + " min");
+            tvDate.setText(priseEnCharge.getDate());
+            tvDatePeser.setText("Date psesés le: " + priseEnCharge.getDate_peser());
+            tvNombre.setText("Nombre: " + priseEnCharge.getNombre());
+            tvSorte.setText("Sorte: " + priseEnCharge.getSorte());
+            tvPoids.setText("Poids: " + priseEnCharge.getPoids() + " kg");
+            tvQualite.setText("Qualité: " + priseEnCharge.getQualite());
+            tvPrixKilo.setText("Prix par Kilo: " + priseEnCharge.getPrixKilo() + " Fr.");
+            tvReduction.setText("Réduction: " + priseEnCharge.getReduction() + " %");
+            tvPrixFinale.setText("Prix Finale: " + priseEnCharge.getPrixFinale() + " Fr.");
+            tvRemarque.setText("Remarques: " + priseEnCharge.getRemarques());
+
         }
     }
 }

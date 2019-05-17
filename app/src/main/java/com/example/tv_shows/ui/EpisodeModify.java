@@ -20,12 +20,19 @@ public class EpisodeModify extends AppCompatActivity {
 
     private static final String TAG = "EpisodeModify";
 
-    private String showName;
+    private String fromagerieName;
 
     // Initiate EditTexts to change the 3 attributes
     private EditText editText1;
     private EditText editText2;
     private EditText editText3;
+    private EditText editText4;
+    private EditText editText5;
+    private EditText editText6;
+    private EditText editText7;
+    private EditText editText8;
+    private EditText editText9;
+    private EditText editText10;
 
     // Button to save changed attribute/s
     private Button button;
@@ -43,13 +50,13 @@ public class EpisodeModify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_episode_modify);
 
-        showName = getIntent().getStringExtra("showName"); // Attribute (foreign key) ShowName -> needed if new PriseEnCharge is created
-        System.out.println("0: " + showName);
-        String idEpisode = getIntent().getStringExtra("idEpisode"); // Attribute (primary key) episodeID -> needed if existing PriseEnCharge is updated
+        fromagerieName = getIntent().getStringExtra("fromagerieName"); // Attribute (foreign key) ShowName -> needed if new PriseEnCharge is created
+        System.out.println("0: " + fromagerieName);
+        String idPriseEnCharge = getIntent().getStringExtra("idPriseEnCharge"); // Attribute (primary key) episodeID -> needed if existing PriseEnCharge is updated
 
         initiateView(); // Associate TextViews with xml declarations & Add TextChangedListener
 
-        if (idEpisode==null) {
+        if (idPriseEnCharge==null) {
             setTitle("Add PriseEnCharge");
             isEditMode = false;
         } else {
@@ -59,16 +66,22 @@ public class EpisodeModify extends AppCompatActivity {
         }
 
         // Get PriseEnCharge Details & Create ViewModel
-        PriseEnChargeViewModel.Factory factory = new PriseEnChargeViewModel.Factory(getApplication(), idEpisode, showName);
+        PriseEnChargeViewModel.Factory factory = new PriseEnChargeViewModel.Factory(getApplication(), idPriseEnCharge, fromagerieName);
         viewModel = ViewModelProviders.of(this, factory).get(PriseEnChargeViewModel.class);
         if (isEditMode) {
             viewModel.getPriseEnCharge().observe(this, episodeEntity -> {
                 if (episodeEntity != null) {
                     priseEnCharge = episodeEntity;
-                    editText1.setText(priseEnCharge.getName());
-                    editText2.setText(priseEnCharge.getId());
-                    editText2.setEnabled(false);
-                    editText3.setText(String.valueOf(priseEnCharge.getLength()));
+                    editText1.setText(priseEnCharge.getDate());
+                    editText2.setText(priseEnCharge.getDate_peser());
+                    editText3.setText(priseEnCharge.getNombre());
+                    editText4.setText(priseEnCharge.getSorte());
+                    editText5.setText(priseEnCharge.getPoids());
+                    editText6.setText(priseEnCharge.getQualite());
+                    editText7.setText(priseEnCharge.getPrixKilo());
+                    editText8.setText(priseEnCharge.getReduction());
+                    editText9.setText(priseEnCharge.getPrixFinale());
+                    editText10.setText(priseEnCharge.getRemarques());
                 }
             });
         }
@@ -76,7 +89,14 @@ public class EpisodeModify extends AppCompatActivity {
         button.setOnClickListener(view -> {
             saveChanges(editText1.getText().toString(),
                     editText2.getText().toString(),
-                    editText3.getText().toString()
+                    editText3.getText().toString(),
+                    editText4.getText().toString(),
+                    editText5.getText().toString(),
+                    editText6.getText().toString(),
+                    editText7.getText().toString(),
+                    editText8.getText().toString(),
+                    editText9.getText().toString(),
+                    editText10.getText().toString()
             );
             onBackPressed();
         });
@@ -87,20 +107,31 @@ public class EpisodeModify extends AppCompatActivity {
         editText2 = (EditText) findViewById(R.id.date_peser);
         editText3 = (EditText) findViewById(R.id.nombre);
         button = (Button) findViewById(R.id.save);
-
+/*
         editText1.addTextChangedListener(loginTextWatcher);
         editText2.addTextChangedListener(loginTextWatcher);
-        editText3.addTextChangedListener(loginTextWatcher);
+        editText3.addTextChangedListener(loginTextWatcher);*/
     }
 
-    private void saveChanges(String name, String id, String length) {
+    private void saveChanges(String date, String date_peser,
+                             String nombre, String sorte, String poids,
+                             String qualite, String prixKilo, String prixFinale,
+                             String reduction, String remarques) {
 
         Intent intent = new Intent(EpisodeModify.this, ShowDetails.class);
 
         if (isEditMode) {
-            priseEnCharge.setName(name);
-            priseEnCharge.setId(id);
-            priseEnCharge.setLength(length);
+            priseEnCharge.setDate(date);
+            priseEnCharge.setDate_peser(date_peser);
+            priseEnCharge.setNombre(nombre);
+            priseEnCharge.setSorte(sorte);
+            priseEnCharge.setPoids(poids);
+            priseEnCharge.setQualite(qualite);
+            priseEnCharge.setPrixKilo(prixKilo);
+            priseEnCharge.setReduction(reduction);
+            priseEnCharge.setPrixFinale(prixFinale);
+            priseEnCharge.setRemarques(remarques);
+
             viewModel.updatePriseEnCharge(priseEnCharge, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
@@ -114,10 +145,12 @@ public class EpisodeModify extends AppCompatActivity {
                     toast.show();
                 }
             });
-            intent.putExtra("showName", priseEnCharge.getShowName()); // give ShowName to next activity
+            intent.putExtra("fromagerieName", priseEnCharge.getFromagerieName()); // give ShowName to next activity
 
         } else {
-            PriseEnCharge newPriseEnCharge = new PriseEnCharge(id, name, length, showName, , , , , , , , );
+            PriseEnCharge newPriseEnCharge = new PriseEnCharge(date, date_peser, nombre, sorte,
+                    poids, qualite, prixKilo, prixFinale, reduction, remarques);
+
             viewModel.createPriseEnCharge(newPriseEnCharge, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
@@ -131,7 +164,7 @@ public class EpisodeModify extends AppCompatActivity {
                     toast.show();
                 }
             });
-            intent.putExtra("showName", showName);  // give ShowName to next activity
+            intent.putExtra("fromagerieName", fromagerieName);  // give ShowName to next activity
         }
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION |
@@ -141,6 +174,7 @@ public class EpisodeModify extends AppCompatActivity {
     }
 
     // TextWatcher class, to enable the Button only if Textfields are not empty
+    /*
     private TextWatcher loginTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -158,5 +192,5 @@ public class EpisodeModify extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
         }
-    };
+    };*/
 }
