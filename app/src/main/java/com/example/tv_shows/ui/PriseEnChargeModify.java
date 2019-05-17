@@ -106,6 +106,9 @@ public class PriseEnChargeModify extends AppCompatActivity {
         }
 
         button.setOnClickListener(view -> {
+
+            double prix = Double.parseDouble(editText6.getText().toString()) * Double.parseDouble(editText7.getText().toString());
+
             saveChanges(editText1.getText().toString(),
                     editText2.getText().toString(),
                     editText3.getText().toString(),
@@ -113,8 +116,8 @@ public class PriseEnChargeModify extends AppCompatActivity {
                     editText5.getText().toString(),
                     editText6.getText().toString(),
                     editText7.getText().toString(),
+                    String.valueOf(prix),
                     editText8.getText().toString(),
-                    editText9.getText().toString(),
                     editText10.getText().toString()
             );
             onBackPressed();
